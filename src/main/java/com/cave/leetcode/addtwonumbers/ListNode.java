@@ -30,4 +30,18 @@ public class ListNode {
     public int hashCode() {
         return Objects.hash(val, next);
     }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+
+        sb.append(val);
+        ListNode n = next;
+        while (n != null) {
+            sb.append(n.val);
+            n = n.next;
+        }
+
+        return sb.toString();
+    }
 }

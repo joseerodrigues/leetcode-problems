@@ -11,15 +11,19 @@ public class Solution {
 
         while (l1 != null) {
             while (l2 != null) {
-                int sum = l1.val + l2.val + carry;
+                int sum = 0;
+
+                if (l1 != null) {
+                    sum += l1.val;
+                    l1 = l1.next;
+                }
+                sum += l2.val + carry;
+                carry = 0;
 
                 if (sum > 9) {
                     carry = sum / 10;
                     sum = sum % 10;
                 }
-
-                l1 = l1.next;
-                l2 = l2.next;
 
                 if (head == null) {
                     head = new ListNode(sum);
@@ -28,6 +32,12 @@ public class Solution {
                     node.next = new ListNode(sum);
                     node = node.next;
                 }
+
+                l2 = l2.next;
+
+                if (l2 == null && carry > 0) {
+                    node.next = new ListNode(carry);
+                }
             }
 
             if (l1 != null) {
@@ -35,7 +45,7 @@ public class Solution {
                 node = node.next;
                 l1 = l1.next;
 
-                if (l1 == null) {
+                if (l1 == null && carry > 0) {
                     node.next = new ListNode(carry);
                 }
             }

@@ -52,4 +52,14 @@ class SolutionTest {
         Solution solution = new Solution();
         assertEquals(expected, solution.addTwoNumbers(l1, l2));
     }
+
+    @Test
+    void addTwoNumbers_4() {
+        ListNode l1 = buildList(2,4,9);
+        ListNode l2 = buildList(5,6,4,9);
+        ListNode expected = buildList(7,0,4,0,1);
+
+        Solution solution = new Solution();
+        assertEquals(expected, solution.addTwoNumbers(l1, l2));
+    }
 }
