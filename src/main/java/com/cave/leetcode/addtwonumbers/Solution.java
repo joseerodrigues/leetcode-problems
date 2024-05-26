@@ -4,52 +4,38 @@ package com.cave.leetcode.addtwonumbers;
 
 public class Solution {
     public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
-
         ListNode node = null;
         ListNode head = null;
         int carry = 0;
-
-        while (l1 != null) {
-            while (l2 != null) {
-                int sum = 0;
-
-                if (l1 != null) {
-                    sum += l1.val;
-                    l1 = l1.next;
-                }
-                sum += l2.val + carry;
-                carry = 0;
-
-                if (sum > 9) {
-                    carry = sum / 10;
-                    sum = sum % 10;
-                }
-
-                if (head == null) {
-                    head = new ListNode(sum);
-                    node = head;
-                } else {
-                    node.next = new ListNode(sum);
-                    node = node.next;
-                }
-
-                l2 = l2.next;
-
-                if (l2 == null && carry > 0) {
-                    node.next = new ListNode(carry);
-                }
-            }
+        do {
+            int l1v = 0;
+            int l2v = 0;
 
             if (l1 != null) {
-                node.next = new ListNode(0);
-                node = node.next;
+                l1v = l1.val;
                 l1 = l1.next;
-
-                if (l1 == null && carry > 0) {
-                    node.next = new ListNode(carry);
-                }
             }
-        }
+            if (l2 != null) {
+                l2v = l2.val;
+                l2 = l2.next;
+            }
+
+            int sum = l1v + l2v + carry;
+            carry = sum / 10;
+            int digit = sum % 10;
+
+            if (head == null) {
+                head = new ListNode(digit);
+                node = head;
+            }else{
+                node.next = new ListNode(digit);
+                node = node.next;
+            }
+            if (digit == 0 && carry > 0){
+                node.next = new ListNode(carry);
+            }
+            //System.out.println(digit);
+        }while (l1 != null || l2 != null);
 
         return head;
     }
