@@ -31,12 +31,11 @@ public class Solution {
                 node.next = new ListNode(digit);
                 node = node.next;
             }
-            if (digit == 0 && carry > 0){
+            if (carry > 0){
                 node.next = new ListNode(carry);
             }
             //System.out.println(digit);
         }while (l1 != null || l2 != null);
-
         return head;
     }
 }
